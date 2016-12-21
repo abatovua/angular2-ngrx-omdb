@@ -1,0 +1,13 @@
+<form #search="ngForm" (submit)="loadFilms()" novalidate>
+  <md-input name="query" [(ngModel)]="model.lastQuery.query" required>
+    <input md-input>
+  </md-input>
+  <button md-raised-button color="primary" type="submit" [disabled]="!search.valid">Search</button>
+</form>
+<film-list
+  [list]="model.list"
+  [lastQuery]="model.lastQuery"
+  [isLoading]="model.isLoading"
+  (onLoadMore)="loadMore()"
+></film-list>
+{{model | json}}

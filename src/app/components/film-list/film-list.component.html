@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <ul class="film-list">
+    <li *ngFor="let film of list" class="film">
+      <div class="film-inner-wrapper">
+        <div class="poster-wrapper">
+          <img src="{{film.Poster | poster}}" class="poster">
+        </div>
+
+        {{film.Title}}
+      </div>
+    </li>
+  </ul>
+  <div *ngIf="lastQuery.pages && lastQuery.loaded < lastQuery.pages" class="load-more-wrapper">
+    <button md-raised-button color="primary" (click)="loadMore()" [disabled]="isLoading">Load More</button>
+  </div>
+</div>
