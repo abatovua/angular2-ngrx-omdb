@@ -2,15 +2,39 @@
   <ul class="film-list">
     <li *ngFor="let film of list" class="film">
       <div class="film-inner-wrapper">
-        <div class="poster-wrapper">
-          <img src="{{film.Poster | poster}}" class="poster">
+        <div class="poster-wrapper" [style.backgroundImage]="getBackgroundImageUrl(film.Poster | poster)">
+          <a routerLink="{{'/film/' + film.imdbID}}" class="film-details-link">View more</a>
         </div>
-
-        {{film.Title}}
+        <!--film data-->
+        <mdl-list>
+          <mdl-list-item>
+            <mdl-list-item-primary-content>
+              <strong>{{film.Title}}</strong>
+            </mdl-list-item-primary-content>
+          </mdl-list-item>
+          <mdl-list-item>
+            <mdl-list-item-primary-content>
+              Year: {{film.Year}}
+            </mdl-list-item-primary-content>
+          </mdl-list-item>
+          <mdl-list-item>
+            <mdl-list-item-primary-content>
+              Type: {{film.Type}}
+            </mdl-list-item-primary-content>
+          </mdl-list-item>
+        </mdl-list>
       </div>
     </li>
   </ul>
   <div *ngIf="lastQuery.pages && lastQuery.loaded < lastQuery.pages" class="load-more-wrapper">
-    <button md-raised-button color="primary" (click)="loadMore()" [disabled]="isLoading">Load More</button>
+    <button
+      mdl-button
+      mdl-button-type="raised"
+      mdl-colored="primary"
+      mdl-ripple
+      [disabled]="isLoading"
+      (click)="loadMore()"
+    >Load more
+    </button>
   </div>
 </div>

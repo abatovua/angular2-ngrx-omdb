@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+body
+{
+    margin: 0;
+    background-color: rgba(207,216,220,0.56);
+}
+
+*
+{
+    box-sizing: border-box;
+}
+
+@import "~angular2-mdl/scss/color-definitions";
+
+$color-primary: $palette-blue-500;
+$color-primary-dark: $palette-blue-700;
+$color-accent: $palette-amber-A200;
+$color-primary-contrast: $color-dark-contrast;
+$color-accent-contrast: $color-dark-contrast;
+
+@import '~angular2-mdl/scss/material-design-lite';

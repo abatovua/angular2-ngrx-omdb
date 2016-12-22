@@ -11,7 +11,21 @@
 <!--<pre>{{ form.value | json }}</pre>-->
 <!--<pre>{{ rating | json }}</pre>-->
 
-<md-toolbar color="primary">OMDB search app</md-toolbar>
-<router-outlet></router-outlet>
+
+  <mdl-layout mdl-layout-header-seamed>
+    <mdl-layout-header>
+      <mdl-layout-header-row>
+        <mdl-layout-title>Angular2-ngrx OMDB app</mdl-layout-title>
+        <mdl-layout-spacer></mdl-layout-spacer>
+        <nav class="mdl-navigation">
+          <a routerLink="/movie-list" class="mdl-navigation__link">Home</a>
+        </nav>
+      </mdl-layout-header-row>
+    </mdl-layout-header>
+    <mdl-layout-content>
+      <router-outlet></router-outlet>
+    </mdl-layout-content>
+  </mdl-layout>
+
 
 

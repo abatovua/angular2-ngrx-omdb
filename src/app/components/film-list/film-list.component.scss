@@ -3,7 +3,7 @@
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 0 15px 0;
 }
 
 .film-list
@@ -15,12 +15,14 @@
 
   .film
   {
-    width: 33.33333%;
+    width: 25%;
     padding: 10px;
+    display: flex;
   }
 
   .film-inner-wrapper
   {
+    flex: 1;
     background-color: #fff;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
   }
@@ -33,12 +35,28 @@
 
 .poster-wrapper
 {
-  text-align: center;
-  padding: 15px 0;
+  height: 150px;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  background-color: #373737;
 }
 
-.poster
+.film-details-link
 {
-  width: 180px;
-  height: 270px;
+  display: block;
+  height: 100%;
+  line-height: 150px;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  font-weight: bold;
+  color: #fff;
+  transition: background-color 0.5s ease-out,
+              color 0.5s ease-out;
+
+  &:hover
+  {
+    background-color: rgba(248, 247, 216, 0.6);
+    color: #000;
+  }
 }

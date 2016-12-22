@@ -25,4 +25,8 @@ export class FilmListComponent {
     this.onLoadMore.emit();
   }
 
+  getBackgroundImageUrl(value: string): string {
+      return `url(${value})`;
+  }
+
 }

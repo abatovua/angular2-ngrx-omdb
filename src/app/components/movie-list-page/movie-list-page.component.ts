@@ -1,7 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../reducers';
 import { Observable } from "rxjs/Observable";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from "rxjs";
 import { DataService } from '../../shared/services/data.service';
 
@@ -10,11 +11,16 @@ import { DataService } from '../../shared/services/data.service';
   templateUrl: 'movie-list-page.component.html',
   styleUrls: [ 'movie-list-page.component.scss' ]
 })
-export class MovieListPageComponent implements OnDestroy {
+export class MovieListPageComponent implements OnInit, OnDestroy {
   model: any;
   modelSub: Subscription;
+  searchForm: FormGroup;
 
-  constructor(private store: Store<AppState>, private DataService: DataService) {
+  constructor(
+    private store: Store<AppState>,
+    private DataService: DataService,
+    private fb: FormBuilder
+  ) {
     this.modelSub = Observable.combineLatest(
       store.select('films'),
       (films) => {
@@ -31,12 +37,18 @@ export class MovieListPageComponent implements OnDestroy {
     })
   }
 
+  ngOnInit() {
+    this.searchForm = this.fb.group({
+      query: [this.model.lastQuery.query, Validators.required]
+    });
+  }
+
   ngOnDestroy() {
     this.modelSub.unsubscribe();
   }
 
   loadFilms() {
-    this.DataService.initialLoad(this.model.lastQuery.query);
+    this.DataService.initialLoad(this.searchForm.value.query);
   }
 
   loadMore() {

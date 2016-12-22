@@ -1,8 +1,18 @@
-<form #search="ngForm" (submit)="loadFilms()" novalidate>
-  <md-input name="query" [(ngModel)]="model.lastQuery.query" required>
-    <input md-input>
-  </md-input>
-  <button md-raised-button color="primary" type="submit" [disabled]="!search.valid">Search</button>
+<form [formGroup]="searchForm" (submit)="loadFilms()">
+  <mdl-textfield
+    formControlName="query"
+    type="password"
+    label="Search"
+    floating-label
+  ></mdl-textfield>
+  <button
+    mdl-button
+    mdl-button-type="raised"
+    mdl-colored="primary"
+    mdl-ripple
+    [disabled]="!searchForm.valid"
+  >Search
+  </button>
 </form>
 <film-list
   [list]="model.list"
@@ -10,4 +20,3 @@
   [isLoading]="model.isLoading"
   (onLoadMore)="loadMore()"
 ></film-list>
-{{model | json}}

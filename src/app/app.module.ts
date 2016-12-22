@@ -1,13 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
-import { MaterialModule } from '@angular/material';
+import { MdlModule } from 'angular2-mdl';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import 'hammerjs';
 import 'rxjs/Rx';
 
 import { FilmsEffects } from './effects/films.effects';
@@ -20,9 +19,11 @@ import { MovieListPageComponent } from './components/movie-list-page/movie-list-
 import { DataService } from './shared/services/data.service';
 import { PosterPipe } from './shared/pipes/poster.pipe';
 import { FilmListComponent } from './components/film-list/film-list.component';
+import { FilmDetailComponent } from './components/film-detail/film-detail.component';
 
 const appRoutes: Routes = [
   { path: 'movie-list', component: MovieListPageComponent },
+  { path: 'film/:id', component: FilmDetailComponent },
   {
     path: '',
     redirectTo: '/movie-list',
@@ -41,14 +42,16 @@ const appRoutes: Routes = [
     RatingComponent,
     MovieListPageComponent,
     PosterPipe,
-    FilmListComponent
+    FilmListComponent,
+    FilmDetailComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
+    MdlModule,
     RouterModule.forRoot(appRoutes),
-    MaterialModule.forRoot(),
     StoreModule.provideStore(rootReducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
     EffectsModule.run(FilmsEffects)
